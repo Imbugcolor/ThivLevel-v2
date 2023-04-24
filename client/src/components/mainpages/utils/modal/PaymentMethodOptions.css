@@ -1,0 +1,86 @@
+.payment-method-options-modal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.payment-method-options-modal .payment-method{
+    width: 800px;
+    padding: 15px 25px;
+    position: relative;
+    background: #fff;
+    animation: zoomOut ease .3s;
+}
+
+.payment-method-options-modal-close {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    cursor: pointer;
+    font-size: 40px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    padding: 1px;
+}
+
+.cod-btn-confirm {
+    text-align: center;
+    background: #f5bd00;
+    color: #fff;
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+}
+
+.stripe-checkout, .completed-check-option{
+    width: 100%;
+    background: #000;
+    height: 40px;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.list__method_wrapper {
+    margin: 25px 0;
+}
+
+.list__method_wrapper .method_item {
+    display: flex;
+    align-items: center;
+    padding: 15px
+}
+
+.list__method_wrapper .stripe_method_option {
+    border-bottom: none;
+}
+
+.list__method_wrapper .method_item .content_options_method {
+    display: flex;
+    align-items: center;
+    color: #666666;
+    font-weight: 300;
+    margin-left: 15px;
+}
+
+.method_item .content_options_method .img_options_method {
+    height: 50px;
+    width: 105px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content_options_method .img_options_method img {
+    max-width: 105px;
+}
+
+.method_item .content_options_method .text_options_method {
+    margin-left: 25px;
+}
+
+.check_options_method input {
+    width: 18px;
+    height: 18px;
+}

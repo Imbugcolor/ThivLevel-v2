@@ -1,0 +1,72 @@
+.service-container {
+    padding: 35px 0;
+}
+
+.service-container .service-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 10px;
+    cursor: pointer;
+    transition: transform .1s linear;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    font-weight: 300;
+}
+
+.service-container .service-item:hover {
+    transform: translateY(-7px);
+}
+
+.service-container .service-item:hover .service-heading {
+    color: #246184;
+}
+
+.service-item .service-icon {
+    padding: 0 10px;
+    margin-right: 5px;
+}
+
+.service-content .service-heading {
+    color: #333;
+}
+
+.service-content .service-des {
+    --height: 16px;
+    font-size: var(--height);
+    /* min-height: 45px; */
+    display: flex;
+    align-items: center;
+    color: #888;
+    padding-top: 5px;
+}
+
+/* best seller */
+.best-seller-container .banner__products_wrapper,
+.best-seller-container .banner__products_type_list {
+    width: 100%;
+}
+
+.watch-more-products-wrapper {
+    width: 100%;
+    text-align: center;
+}
+
+.watch-more-products {
+    width: fit-content;
+    text-align: center;
+    font-size: 17px;
+    color: #fff;
+    background: #000;
+    text-transform: uppercase;
+    line-height: 45px;
+    border: 0;
+    margin-bottom: 15px;
+    border-radius: 0;
+    cursor: pointer;
+    padding: 13px 25px;
+    font-weight: 300;
+}
+
+.watch-more-products:hover {
+    color: #888;
+}

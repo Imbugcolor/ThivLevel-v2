@@ -1,0 +1,44 @@
+.cod-btn{
+    width: 100%;
+    height: 45px;
+    background-color: #d93938;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 15px;
+}
+
+.cod-btn:hover {
+    opacity: 0.8;
+    transition: 0.2s;
+}
+
+.MuiButton-root {
+    width: 100%;
+    height: 45px;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 15px;
+    background-color: #d93938;
+}
+
+.MuiButtonBase-root{
+    background-color: #d93938;
+}
+
+.MuiDialog-paperWidthSm {
+    width: 700px;
+    height: 470px;
+}
+
+.delivery-detail-form {
+    position: relative;
+    height: 100%;
+}
+
+.delivery-detail-form .row {
+    width: 100%;
+    margin: 15px 0;
+}
+
+
+

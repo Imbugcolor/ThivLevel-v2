@@ -1,0 +1,62 @@
+.categories {
+    background: #fff;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+.categories form {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.categories label {
+    display: block;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.categories input,
+.categories button {
+    height: 35px;
+    outline: none;
+}
+
+.categories input {
+    width: 250px;
+    border: 1px solid #d5d3d2;
+    padding: 0 15px;
+}
+
+.categories button {
+    width: 70px;
+    color: white;
+    margin-left: 10px;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.categories .create__cat_btn {
+    background-color: #000;
+}
+
+.categories .update__cat_btn {
+    background-color: #0e9f6e;
+}
+
+.categories .remove__cat_btn {
+    background-color: #d93938;
+}
+
+.categories .row {
+    min-width: 290px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+}

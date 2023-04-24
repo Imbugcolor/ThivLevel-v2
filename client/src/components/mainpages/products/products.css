@@ -1,0 +1,375 @@
+.products__container {
+    justify-content: space-between;
+}
+
+.products__container .products__category {
+    margin-top: 20px;
+}
+
+.products__container .products__category-heading {
+    text-transform: uppercase;
+    color: #555;
+    border-bottom: 2px solid;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    font-weight: 300;
+}
+
+.products__container .products__category ul li{
+    display: inline-block;
+    margin-right: 5px;
+    margin-top: 15px;
+    font-weight: 300;
+}
+
+.products__container .products__category ul li a{
+    font-size: 17px;
+    color: #666;
+    transition: transform .2s linear;
+    display: inline-block;
+    border: 1px #d5d5d5 solid;
+    padding: 5px 15px;
+}
+
+.products__container .products__category ul li a:hover {
+    color: #000;
+    border: 1px #000 solid;
+}
+
+.products {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.products .no-results {
+    color: #246284;
+}
+
+/* Product item */
+@import url("../utils/productItem/productItem.css");
+
+.delete-all {
+    text-align: right;
+    margin: 20px;
+}
+
+.delete-all input {
+    height: 25px;
+    width: 25px;
+    transform: translateY(5px);
+    margin: 0 15px;
+}
+
+.delete-all span {
+    text-transform: uppercase;
+    color: rgb(3,165,206);
+    letter-spacing: 1.3px;
+}
+
+.delete-all button {
+    border: 1px solid #d93938;
+    padding: 10px 25px;
+    color: #d93938;
+    text-transform: uppercase;
+}
+
+/* Filters */
+.filter_menu {
+    min-height: 40px;
+    color: #008c90;
+    padding: 5px 10px;
+    justify-content: space-between;
+}
+
+.filter_product_wrapper {
+    display: flex;
+    padding: 0;
+}
+
+.admin .filter_menu {
+    background: #fff;
+}
+
+.admin .filter_menu select,
+.admin .filter_menu input {
+    background: #eee;
+    padding: 0 5px;
+}
+
+.filter_menu input {
+    border: none;
+    padding: 5px 15px;
+    height: 40px;
+    border: #d5d5d5 1px solid;
+    outline: none;
+}
+
+.filter_menu select {
+    outline: none;
+    height: 40px;
+    /* border-radius: 20px; */
+    border: #d5d5d5 1px solid;
+    padding: 5px 15px;
+}
+
+.filter_menu .tool-wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.filter_menu input {
+    flex: 1;
+}
+
+.filter_menu .search {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    position: relative;
+    background: #fff;
+}
+
+.filter_left_side {
+    display: flex;
+    align-items: center;
+}
+
+.filter_menu .search_product_page {
+    width: 600px;
+}
+
+.filter_menu .search .search-btn {
+    color: #d93938;
+    height: 40px;
+    padding: 0 10px;
+    font-size: 20px;
+    line-height: 100%;
+    border: 1px solid #d5d5d5;
+    border-left: none;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    background: #f8f8f8;
+}
+
+.filter_menu .search .result-list{
+    position: absolute;
+    top: 100%;
+    z-index: 10;
+    background: #fff;
+    right: 0;
+    left: 0;
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 0 1px 5px rgba(0,0,0,.2);
+    margin-top: 5px;
+}
+
+.filter_menu .search .result-list .result-item{
+    margin: 5px 0;
+}
+
+.filter_menu .search .result-list .result-item a{
+    display: block;
+    padding: 10px;
+    color: #333;
+    transition: background .1s linear;
+}
+
+.filter_menu .search .result-list .result-item a:hover{
+    background: #eee;
+}
+
+.filter_right_side {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.filter_menu .filter,
+.filter_menu .sort {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.filter_menu .filter span,
+.filter_menu .sort span{
+    display: block;
+    margin: 0 10px;
+    color: #888;
+}
+
+.items-not-found-title {
+    text-align: center;
+    width: 100%;
+    height: 200px;
+    line-height: 200px;
+}
+/* Load more */
+.load_more {
+    text-align: center;
+}
+
+.load_more button {
+    padding: 0 25px;
+    margin-bottom: 20px;
+    border: 1px solid #555;
+    text-transform: capitalize;
+}
+
+.number_total_products {
+    color: #555;
+    font-weight: 300;
+}
+
+.cate-side-bar {
+    max-width: 350px;
+}
+
+.products_price_filter {
+    margin-top: 25px;
+}
+
+.input_filter__wrapper  {
+    padding-top: 15px;
+}
+
+.input_filter__wrapper .price_filter_input {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.price_filter_input .divider_input {
+    margin: 0 15px;
+}
+
+.input_filter__wrapper .price_filter_input input {
+    height: 35px;
+    width: 100%;
+    border: 1px solid #d5d3d2;
+    padding: 0 5px;
+    outline: none;
+}
+
+.input_filter__wrapper button {
+    margin: 15px 0;
+    width: 100%;
+    height: 35px;
+    color: #fff;
+    background: #000;
+    text-transform: uppercase;
+}
+
+
+/* ----------------- SIZE FILTER --------------- */
+
+/* The container */
+.boxes_container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 18px;
+    -webkit-user-select: none;
+    user-select: none;
+    display: inline-block;
+    width: 50%;
+    font-weight: 300;
+}
+  
+  /* Hide the browser's default checkbox */
+.boxes_container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+  
+  /* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+  
+  /* On mouse-over, add a grey background color */
+.boxes_container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+  
+  /* When the checkbox is checked, add a blue background */
+.boxes_container input:checked ~ .checkmark {
+    background-color: #000;
+}
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+  
+  /* Show the checkmark when checked */
+.boxes_container input:checked ~ .checkmark:after {
+    display: block;
+}
+  
+  /* Style the checkmark/indicator */
+.boxes_container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+/*------------------ END SIZE FILTER -------------*/
+
+.remove__filter_wrapper {
+    text-align: left;
+    width: 50px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.remove__filter_wrapper button {
+    height: 40px;
+    width: 40px;
+    background: #d5d3d2;
+    border: 1px solid #d5d3d2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.remove__filter_wrapper button svg {
+    font-size: 20px;
+}
+
+
+@media (max-width: 1113px) {
+    .filter_menu .filter,
+    .filter_menu .sort {
+        justify-content: space-between;
+        width: 100%;
+    }
+    .filter_product_wrapper {
+        display: block;
+    }
+    .filter_right_side {
+        display: block;
+    }
+}
