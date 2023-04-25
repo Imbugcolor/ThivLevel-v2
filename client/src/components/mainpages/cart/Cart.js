@@ -15,7 +15,6 @@ import Loading from '../utils/loading/Loading'
 function Cart() {
   const state = useContext(GlobalState)
   const [cart, setCart] = state.userAPI.cart
-  const [loading, setLoading] = state.userAPI.loading
   const [loadingPayment, setLoadingPayment] = useState(false)
   const [user] = state.userAPI.user
   const [token] = state.token
@@ -231,18 +230,13 @@ function Cart() {
           </div>
 
         </div>
-        { item.productId.isPublished ||
+        { 
+          !item.productId.isPublished || item.productId.countInStock <= 0 ?
           <div className="unvailible-layer">
             <span>Không có sẵn</span>
-          </div>
+          </div> : null
         }
-       
-        {
-          item.productId.countInStock  > 0 ||
-          <div className="unvailible-layer">
-            <span>Đã hết hàng</span>
-          </div> 
-        }
+     
         <div className="delete" onClick={() => removeProduct(item)}><RiIcons.RiDeleteBinFill /></div>
       </div>
     )
@@ -270,6 +264,7 @@ function Cart() {
     e.preventDefault()
     checkCartValid()
     setCheckButton(true)
+    setCallback(!callback)
   }
 
   const closePayment = () => {
@@ -294,7 +289,6 @@ function Cart() {
   }
 
   return (
-    loading ? <div><Loading /></div> :
     page === 1 ? <Payment 
     total={total}
     cart={cart.cart}

@@ -216,13 +216,17 @@ const userCtrl = {
           select: "product_id price total title images countInStock isPublished"
         });
      
-        const cart = carts[0]
+        let cart = carts[0]
        
         if (!cart) {
-            return res.status(400).json({
-                msg: "You have not added any products yet."
-            })
+            const cartData = {
+              userId: req.user.id,
+              items: [],
+              subTotal: 0
+            }
+            cart = await CartCtrl.addItem(cartData)
         }
+
         res.status(200).json({cart})
     } catch (err) {
         return res.status(500).json({ msg: err.message })
@@ -421,7 +425,7 @@ const userCtrl = {
                   }, 0)
                   
                   if (p.countInStock < totalQuantity) {
-                      count = count +1;
+                      count = count + 1;
                       return false
                   }
                 }           
@@ -433,7 +437,27 @@ const userCtrl = {
         
 
         if(!isValid()) {
-          return res.status(400).json({ msg: 'Lỗi thanh toán, kiểm tra lại giỏ hàng.' })
+          return res.status(400).json({ msg: 'Lỗi thanh toán, một số sản phẩm không đủ số lượng.' })
+        }
+
+        const isActive = () => {
+          let count = 0;
+          cart.items.forEach(item => {
+              products.find(p => {
+                if (p._id.toString() === item.productId._id.toString()) {
+                  if (!p.isPublished) {
+                      count = count + 1;
+                      return false
+                  }
+                }           
+            })
+          })
+          if(count > 0) return false
+          return true
+        } 
+
+        if(!isActive()) {
+          return res.status(400).json({ msg: 'Lỗi thanh toán, một số sản phẩm không còn tồn tại.' })
         }
 
         res.status(200).json({
