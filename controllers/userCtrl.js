@@ -226,6 +226,34 @@ const userCtrl = {
             }
             cart = await CartCtrl.addItem(cartData)
         }
+        else{
+          await Promise.all(cart.items.map(async(item) => {
+            if(!item.productId) {
+              await Cart.findOneAndUpdate({userId: req.user.id},
+                {
+                  "$pull": {
+                    "items": {
+                      "_id": item._id
+                    }
+                  }
+                }
+              ).populate({
+                path: "items.productId",
+                select: "product_id price total title images countInStock isPublished"
+              });
+               
+              let newCart = await Cart.findOne({userId: req.user.id}).populate({
+                path: "items.productId",
+                select: "product_id price total title images countInStock isPublished"
+              });
+              
+              newCart.items.length === 0  ?  newCart.subTotal = 0 :
+              newCart.subTotal = newCart.items.map(item => item.total).reduce((acc, next) => acc + next);
+        
+              cart = await newCart.save();
+            }
+          }))
+        }
 
         res.status(200).json({cart})
     } catch (err) {
