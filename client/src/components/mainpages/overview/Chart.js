@@ -82,7 +82,7 @@ function Chart() {
               <h3 className='cart-title'>Doanh thu</h3>
               <div>
                 <Iframe
-                  url="https://charts.mongodb.com/charts-mern-stack-app-wfaew/embed/charts?id=6361ee03-562c-4025-840e-a46d79c93297&maxDataAge=3600&theme=light&autoRefresh=true"
+                  url="https://charts.mongodb.com/charts-ecommerce-website-nunye/embed/charts?id=64492b72-c6f2-4fa9-8417-76ca9cf2fbcc&maxDataAge=3600&theme=light&autoRefresh=true"
                   width="100%"
                   height="380px"
                   style={{ background: '#FFFFFF', border: 'none', borderRadius: '2px', boxShadow: '0 2px 10px 0 rgba(70, 76, 79, .2)' }}
@@ -100,7 +100,7 @@ function Chart() {
                 <h3 className='cart-title'>Sản phẩm</h3>
                 <div>
                   <Iframe
-                    url="https://charts.mongodb.com/charts-mern-stack-app-wfaew/embed/charts?id=63569915-8631-4ca8-8623-69c997d6ade6&maxDataAge=3600&theme=light&autoRefresh=true"
+                    url="https://charts.mongodb.com/charts-ecommerce-website-nunye/embed/charts?id=644933da-dfe4-4e4c-89c2-3326d5647e50&maxDataAge=3600&theme=light&autoRefresh=true"
                     width="100%"
                     height="380px"
                     style={{ background: '#FFFFFF', border: 'none', borderRadius: '2px', boxShadow: '0 2px 10px 0 rgba(70, 76, 79, .2)' }}
@@ -120,7 +120,7 @@ function Chart() {
               <h3 className='cart-title'>Đơn hàng</h3>
               <div>
                 <Iframe
-                  url="https://charts.mongodb.com/charts-mern-stack-app-wfaew/embed/charts?id=63569dfb-302a-46a7-8bae-4bad081df989&maxDataAge=3600&theme=light&autoRefresh=true"
+                  url="https://charts.mongodb.com/charts-ecommerce-website-nunye/embed/charts?id=64492f3c-b3e2-4fcf-8ea1-4464f214e4ed&maxDataAge=3600&theme=light&autoRefresh=true"
                   width="100%"
                   height="380px"
                   style={{ background: '#FFFFFF', border: 'none', borderRadius: '2px', boxShadow: '0 2px 10px 0 rgba(70, 76, 79, .2)' }}
@@ -133,24 +133,6 @@ function Chart() {
 
             </div>
           </div>
-          <div className='card-chart'>
-              <div className='card-chart-body'>
-                <h3 className='cart-title'>Tình trạng đơn hàng</h3>
-                <div>
-                  <Iframe
-                    url="https://charts.mongodb.com/charts-mern-stack-app-wfaew/embed/charts?id=638728dc-8c0a-413a-8431-97eb466a61af&maxDataAge=3600&theme=light&autoRefresh=true"
-                    width="100%"
-                    height="380px"
-                    style={{ background: '#FFFFFF', border: 'none', borderRadius: '2px', boxShadow: '0 2px 10px 0 rgba(70, 76, 79, .2)' }}
-                    id=""
-                    className=""
-                    display="block"
-                    position="relative"
-                  />
-                </div>
-
-              </div>
-            </div>
         </div>
       </div>
     </div>

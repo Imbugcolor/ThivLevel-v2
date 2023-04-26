@@ -33,7 +33,7 @@ const userSchema = new mongoose.Schema({
     },
     imageProfile: {
         type: Object,
-        default: {}
+        default: {url: 'https://res.cloudinary.com/dnv2v2tiz/image/upload/v1679802559/instagram-avt-profile/unknow_fc0uaf.jpg'}
     },
     isVerifyPhone: {
         type: Boolean,

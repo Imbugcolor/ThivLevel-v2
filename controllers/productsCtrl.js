@@ -54,7 +54,10 @@ const productsCtrl = {
             const features = new APIfeatures(Products.find({
                 size: {$in: sizesArray}
             }), req.query).filtering().sorting()
-            const products = await features.query
+            const products = await features.query.populate({
+                path: "reviews.user",
+                select: "username imageProfile"
+            })
 
             res.json({
                 status: 'success',
@@ -69,7 +72,10 @@ const productsCtrl = {
     getProductsQuery: async (req, res) => {
         try {
             const features = new APIfeatures(Products.find(), req.query).slide().filtering().sorting()
-            const products = await features.query
+            const products = await features.query.populate({
+                path: "reviews.user",
+                select: "username imageProfile"
+            })
 
             res.json({
                 status: 'success',

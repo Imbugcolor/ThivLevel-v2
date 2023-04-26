@@ -191,6 +191,7 @@ header .navbar-tablet-mobile-wrapper.active {
     border-radius: 50%;
     padding: 1px;
     border: 1px solid #ccc;
+    object-fit: cover;
 }
 
 .header-nav-tablet-mobile .user__wrapper .user__name {
@@ -311,6 +312,7 @@ header .header-nav .login_sign_up_nav {
     height: var(--avt-size);
     border-radius: 50%;
     padding: 1px;
+    object-fit: cover;
 }
 
 .user__container .user__wrapper .user__name {
@@ -419,6 +421,12 @@ header .sign_in__mobile_wrapper .sign_in__mobile svg {
 } 
 
 /* Mobile - tablet navigation */
+
+@media (max-width: 1421px) {
+    .user__container .user__wrapper {
+        flex-direction: column-reverse;
+    }
+}
 
 @media (max-width: 768px) {
     header .header__top .header-nav,

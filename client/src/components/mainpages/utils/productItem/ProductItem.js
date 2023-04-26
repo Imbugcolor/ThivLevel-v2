@@ -14,8 +14,14 @@ function ProductItem({ product, isAdmin, deleteProduct, handleCheck, setCurrentP
             onChange={() => handleCheck(product._id)} />
         }
         <div className="product_img">
-          <img className="product_img-1" src={product.images[0].url} alt="" />
-          <img className="product_img-2" src={product.images[1]?.url} alt="" />
+          {
+            product.images.length < 2 ?
+            <img className="product_img-0" src={product.images[0].url} alt="" /> :
+            <>
+              <img className="product_img-1" src={product.images[0].url} alt="" />
+              <img className="product_img-2" src={product.images[1]?.url} alt="" />
+            </>
+          }
           {product.countInStock <= 0 && <img className="product_img-sold-out" src={SoldOut} alt="" />}
           <div className="quick-view" onClick={() => handleViewDetail(product)}>
             Xem nhanh

@@ -27,9 +27,9 @@ export default function ReviewItem(props) {
                 currentItems.map(review => (
                     <div className='review' key={review._id}>
                         <div className="review-wrapper">
-                            <img src={review?.imageUser?.url || Unknow} alt="avt-reviewer"/>
+                            <img src={review.user.imageProfile?.url || Unknow} alt="avt-reviewer"/>
                             <div className="">
-                                <strong>{review.name}</strong>
+                                <strong>{review.user.username}</strong>
                                 <Rating value={review.rating} text={''} />
                                 <span>{moment(review.createdAt).calendar()}</span>
                                 <p>{review.comment}</p>

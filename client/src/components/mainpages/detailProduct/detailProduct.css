@@ -330,6 +330,7 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 .size-select {
@@ -471,6 +472,7 @@
     width: 40px;
     margin-right: 5px;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 .rating-statistics {
