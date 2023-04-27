@@ -32,6 +32,7 @@ function DetailOrderAdmin() {
                 }
             })
         }
+        return () => setAddress('')
     }, [params.id, orders])
 
     const handleChangeSatus = (e) => {
@@ -151,8 +152,8 @@ function DetailOrderAdmin() {
                             <span>{moment(detailOrder.updatedAt).format('LT')}</span>
                         </div>
                         <div className='id-order'>
-                            <label>MÃ ĐƠN</label>
-                            <p style={{ textTransform: 'uppercase' }}>{detailOrder._id}</p>
+                            <label>EMAIL</label>
+                            <p>{detailOrder.email}</p>
                         </div>
                         <div className='phone-number-order'>
                             <label>SỐ ĐIỆN THOẠI</label>
@@ -189,9 +190,11 @@ function DetailOrderAdmin() {
                                                             <span style={{ marginLeft: 5}} >{item.title}</span>
                                                         </div>
                                                     </td>
-                                                    <td className='table-product-column'>
-                                                        <span>{item.size} - </span>
-                                                        <div style={{ backgroundColor: `${item.color}`, width: '15px', height: '15px', border: '1px solid #ccc' }}></div>
+                                                    <td>
+                                                        <div className='table-product-column' style={{justifyContent: 'center'}}>
+                                                            <span>{item.size} - </span>
+                                                            <div style={{ backgroundColor: `${item.color}`, width: '15px', height: '15px', border: '1px solid #ccc' }}></div>
+                                                        </div>
                                                     </td>
                                                     <td className='table-quantity'>{item.quantity}</td>
                                                     <td className='table-item-price'>${item.price}</td>

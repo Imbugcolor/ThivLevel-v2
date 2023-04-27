@@ -44,7 +44,7 @@
 }
 
 .categories .update__cat_btn {
-    background-color: #0e9f6e;
+    background-color: #2778c4;
 }
 
 .categories .remove__cat_btn {
@@ -58,5 +58,5 @@
     align-items: center;
     padding: 10px;
     margin-bottom: 10px;
-    border: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
 }

@@ -20,7 +20,7 @@ function DetailUserModal({ detailUser }) {
                         src={      
                             detailUser.imageProfile ? detailUser.imageProfile.url : Unknow
                         }
-                        alt="" />
+                        alt="" referrerPolicy="no-referrer"/>
                     </div>
                     <div className='user-about-profile'>
                         <div>
