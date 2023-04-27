@@ -381,9 +381,13 @@ const userCtrl = {
       const indexFound = cart.items.findIndex(item => item._id == newItems._id)
       
       if (indexFound !== -1) {
-        cart.items[indexFound].quantity = cart.items[indexFound].quantity - 1;
-        cart.items[indexFound].total = cart.items[indexFound].quantity * productDetails.price;
-        cart.subTotal = cart.items.map(item => item.total).reduce((acc, next) => acc + next);
+        if(cart.items[indexFound].quantity > 1) {
+          cart.items[indexFound].quantity = cart.items[indexFound].quantity - 1;
+          cart.items[indexFound].total = cart.items[indexFound].quantity * productDetails.price;
+          cart.subTotal = cart.items.map(item => item.total).reduce((acc, next) => acc + next);
+        } else {
+          return res.status(400).json({msg: 'Invalid request'})
+        }
       }
       
       let data = await cart.save();

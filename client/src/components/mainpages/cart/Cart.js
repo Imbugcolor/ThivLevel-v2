@@ -65,11 +65,22 @@ function Cart() {
   }
 
   const decrementCart = async (id, newItems) => {
-    setIsProgress(true)
-    await axios.patch('/user/decrement-cart', { id, newItems }, {
-      headers: { Authorization: token }
-    })
-    setIsProgress(false)
+    try {
+      setIsProgress(true)
+      await axios.patch('/user/decrement-cart', { id, newItems }, {
+        headers: { Authorization: token }
+      })
+      setIsProgress(false)
+    } catch (err) {
+      Swal.fire({
+        width: 500,
+        icon: 'error',
+        title: err.response.data.msg,
+        showConfirmButton: true
+      })
+      setIsProgress(false)
+    }
+    
   }
 
   const removeItem = async (id, item) => {
@@ -219,7 +230,7 @@ function Cart() {
           </div>
           <div className="amount">         
             <div className='quantity__controll_wrapper'>       
-              <button onClick={() => decrement(item)} disabled={isProgress}><GrFormSubtract /></button>
+              <button onClick={() => decrement(item)} disabled={ isProgress || item.quantity === 1 }><GrFormSubtract /></button>
               <span>{item.quantity}</span>
               <button onClick={() => increment(item)} disabled={isProgress}><FiPlus /></button>
             </div>
