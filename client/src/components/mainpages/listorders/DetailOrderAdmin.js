@@ -8,7 +8,15 @@ import { FaEdit } from 'react-icons/fa'
 import ChangePhoneModal from '../utils/modal/ChangePhoneModal'
 import moment from 'moment'
 import CodLogo from '../../../images/cod-logo.webp'
-import VisaLogo from '../../../images/visa-logo.png'
+import Visa from '../../../images/visa.png'
+import Mastercard from '../../../images/mastercard.png'
+import Jcb from '../../../images/jcb.png'
+import Eftpos_au from '../../../images/eftpos_au.png'
+import Diners from '../../../images/diners.png'
+import Discover from '../../../images/discover.png'
+import Amex from '../../../images/amex.png'
+import Unionpay from '../../../images/unionpay.png'
+import LoadingGIF from '../../../images/loading.gif'
 
 function DetailOrderAdmin() {
     const params = useParams()
@@ -21,6 +29,7 @@ function DetailOrderAdmin() {
     const [address, setAddress] = useState('')
     const addressRef = useRef()
     const [currentPhone, setCurrentPhone] = useState(false)
+    const [cardType, setCardType] = useState('')
 
     useEffect(() => {
         if (params.id) {
@@ -29,10 +38,23 @@ function DetailOrderAdmin() {
                     setDetailOrder(order)
                     setStatusOrder(order.status)
                     setAddress(order.address || '')
+                    if (order.paymentID) {
+                        const getCardType = async () => {
+                            try {
+                                const res = await axios.get(`/api/payment/getCardType/${order.paymentID}`, {
+                                    headers: { Authorization: token }
+                                })
+                                setCardType(res.data.cardType)
+                            } catch (err) {
+                                console.log(err.response.data.msg)
+                            }
+                            
+                        }
+                        getCardType() 
+                    }
                 }
             })
         }
-        return () => setAddress('')
     }, [params.id, orders])
 
     const handleChangeSatus = (e) => {
@@ -212,7 +234,11 @@ function DetailOrderAdmin() {
                             <label>PHƯƠNG THỨC THANH TOÁN</label>
                             <div className='payment__detail_' style={{ display: 'flex', alignItems: 'center'}}>
                                 <img src={
-                                    detailOrder.method === 'Online' ? VisaLogo : CodLogo
+                                    detailOrder.method === 'COD' ? CodLogo : cardType === 'visa' ? Visa :
+                                    cardType === 'mastercard' ? Mastercard : cardType === 'jcb' ?  
+                                    Jcb : cardType === 'amex' ? Amex :  cardType === 'diners' ? 
+                                    Diners :  cardType === 'discover' ? Discover : cardType === 'eftpos_au' ? 
+                                    Eftpos_au : cardType === 'unionpay' ? Unionpay : LoadingGIF
                                 } style={{ marginRight: '10px', height: '45px' }}/>
                                 <span>
                                 {

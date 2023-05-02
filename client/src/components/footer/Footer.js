@@ -3,9 +3,15 @@ import Logo from '../logo/thivlevel-logo-4.png'
 import FbIcon from '../../images/icon_fbn.webp'
 import InsIcon from '../../images/icon_instan.webp'
 import TiktokIcon from '../../images/icon_tiktok.webp'
-import PaypalIcon from '../../images/Paypal_2014_logo.png'
 import CodLogo from '../../images/cod-logo.webp'
-import VisaLogo from '../../images/visa-logo.png'
+import Visa from '../../images/visa.png'
+import Mastercard from '../../images/mastercard.png'
+import Jcb from '../../images/jcb.png'
+import Eftpos_au from '../../images/eftpos_au.png'
+import Diners from '../../images/diners.png'
+import Discover from '../../images/discover.png'
+import Amex from '../../images/amex.png'
+import Unionpay from '../../images/unionpay.png'
 import * as AiIcons from 'react-icons/ai'
 import * as ImIcons from 'react-icons/im'
 import { Link } from 'react-router-dom'
@@ -104,8 +110,14 @@ function Footer() {
                                 <h4 className="footer-item-header">Phương thức thanh toán</h4>
                                 <div className='payment__method_icon'>
                                     <img className="social__media_icon" src={CodLogo}/>
-                                    <img className="social__media_icon" src={PaypalIcon}/>
-                                    <img className="social__media_icon" src={VisaLogo}/>
+                                    <img className="social__media_icon" src={Visa}/>
+                                    <img className="social__media_icon" src={Mastercard}/>
+                                    <img className="social__media_icon" src={Jcb}/>
+                                    <img className="social__media_icon" src={Amex}/>
+                                    <img className="social__media_icon" src={Diners}/>
+                                    <img className="social__media_icon" src={Discover}/>
+                                    <img className="social__media_icon" src={Unionpay}/>
+                                    <img className="social__media_icon" src={Eftpos_au}/>
                                 </div>
                             </div>
                         </div>

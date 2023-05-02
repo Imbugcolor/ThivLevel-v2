@@ -3,7 +3,7 @@ const Users = require('../models/userModels')
 const Products = require('../models/productsModel')
 require('dotenv').config()
 const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY)
-
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
 class APIfeatures {
     constructor(query, queryString){
@@ -42,6 +42,13 @@ class APIfeatures {
         return this;
     }
 
+}
+
+const options = {
+	method: 'GET',
+	headers: {
+		Authorization: `Bearer ${process.env.STRIPE_PRIVATE_KEY}`
+	}
 }
 
 const paymentCtrl = {
@@ -244,6 +251,18 @@ const paymentCtrl = {
         } catch (err) {
             res.status(500).json({msg: err.message})
         }      
+    },
+    getCardType: async (req, res) => {
+        try {
+            const paymentIntent = await fetch(`https://api.stripe.com/v1/payment_intents/${req.params.id}`, options)
+            const payment = await paymentIntent.json()
+
+            const resCard = await fetch(`https://api.stripe.com/v1/payment_methods/${payment.payment_method}`, options)
+            const card = await resCard.json()
+            res.json({cardType: card.card.brand})
+        } catch (err) {
+            res.status(500).json({msg: err.message})
+        }    
     }
 }
 

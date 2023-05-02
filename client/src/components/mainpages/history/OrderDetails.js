@@ -6,7 +6,15 @@ import axios from 'axios'
 import moment from 'moment'
 import Loading from '../utils/loading/Loading'
 import CodLogo from '../../../images/cod-logo.webp'
-import VisaLogo from '../../../images/visa-logo.png'
+import Visa from '../../../images/visa.png'
+import Mastercard from '../../../images/mastercard.png'
+import Jcb from '../../../images/jcb.png'
+import Eftpos_au from '../../../images/eftpos_au.png'
+import Diners from '../../../images/diners.png'
+import Discover from '../../../images/discover.png'
+import Amex from '../../../images/amex.png'
+import Unionpay from '../../../images/unionpay.png'
+import LoadingGIF from '../../../images/loading.gif'
 import { IoTrashBin } from 'react-icons/io5'
 import Swal from 'sweetalert2'
 
@@ -17,6 +25,7 @@ function OrderDetails() {
     const [orderDetails, setOrderDetails] = useState([])
     const [loading, setLoading] = useState(false)
     const [callback, setCallback] = useState(false)
+    const [cardType, setCardType] = useState('')
 
     const params = useParams()
     useEffect(() => {
@@ -28,7 +37,23 @@ function OrderDetails() {
                         headers: { Authorization: token }
                     })                     
                     res.data.forEach(item => {
-                        if (item._id === params.id) setOrderDetails(item)
+                        if (item._id === params.id) {
+                            setOrderDetails(item)  
+                            if (item.paymentID) {
+                                const getCardType = async () => {
+                                    try {
+                                        const res = await axios.get(`/api/payment/getCardType/${item.paymentID}`, {
+                                            headers: { Authorization: token }
+                                        })
+                                        setCardType(res.data.cardType)
+                                    } catch (err) {
+                                        console.log(err.response.data.msg)
+                                    }
+                                    
+                                }
+                                getCardType() 
+                            }
+                        }                 
                     })
                     setLoading(false)              
                 }
@@ -36,6 +61,7 @@ function OrderDetails() {
             }
         }
     }, [params.id, history, callback])
+
 
     const swalConfirmButtons = Swal.mixin({
         customClass: {
@@ -198,13 +224,17 @@ function OrderDetails() {
                         <div className='box-detail_infor'>
                             <span>
                                 {
-                                    orderDetails.method === 'Online' ? 'Thẻ tín dụng' : 'Thanh toán khi nhận hàng'
+                                    orderDetails.method === 'Online' ? 'Online' : 'Thanh toán khi nhận hàng'
                                 }
                             </span>
                             
                             <div className='payment__detail_'>
                                 <img src={
-                                    orderDetails.method === 'Online' ? VisaLogo : CodLogo
+                                    orderDetails.method === 'COD' ? CodLogo : cardType === 'visa' ? Visa :
+                                    cardType === 'mastercard' ? Mastercard : cardType === 'jcb' ?  
+                                    Jcb : cardType === 'amex' ? Amex :  cardType === 'diners' ? 
+                                    Diners :  cardType === 'discover' ? Discover : cardType === 'eftpos_au' ? 
+                                    Eftpos_au : cardType === 'unionpay' ? Unionpay : LoadingGIF
                                 }/>
                                 <span>
                                 {
