@@ -234,3 +234,10 @@ li.file-item .actions .delete-image {
     display: block;
     color: red
 }
+
+.publish-toggle {
+    cursor: pointer;
+    width: 50px;
+    padding: 5px 0 0;
+    font-size: 20px;
+}

@@ -111,7 +111,7 @@
     color: #333;
     font-size: 1.3rem;
     font-weight: 700;
-    text-transform: capitalize;
+    text-transform: uppercase;
 }
 
 .product-page-details .product-category {
@@ -119,6 +119,7 @@
     color: #535353;
     font-weight: 400;
     text-transform: capitalize;
+    padding-top: 5px;
 }
 
 .product-page-details .review-detail-product {

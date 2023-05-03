@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDownload } from '@fortawesome/free-solid-svg-icons'
 import FileList from '../utils/FileList/FileList'
 import { toast } from 'react-toastify'
+import { BsToggleOn, BsToggleOff } from 'react-icons/bs'
 
 const initialState = {
     product_id: '',
@@ -38,6 +39,7 @@ function CreateProduct() {
     const ref = useRef(null)
     const fileUpRef = useRef()
 
+    const [publish, setPublish] = useState(false)
     const [validateMsg, setValidateMsg] = useState('')
 
     useEffect(() => {
@@ -46,11 +48,14 @@ function CreateProduct() {
             products.forEach(product => {
                 if (product._id === param.id) {
                     setProduct(product)
+
                     setImages([...product.images])
 
                     setSize([...product.size])
 
                     setColors([...product.colors])
+
+                    setPublish(product.isPublished)
                 }
             })
         } else {
@@ -59,6 +64,7 @@ function CreateProduct() {
             setImages([])
             setSize([])
             setColors([])
+            setPublish(false)
         }
     }, [param.id, products])
 
@@ -184,11 +190,11 @@ function CreateProduct() {
 
 
             if (onEdit) {
-                await axios.put(`/api/products/${product._id}`, { ...product, images, color, size }, {
+                await axios.put(`/api/products/${product._id}`, { ...product, images, color, size, isPublished: publish }, {
                     headers: { Authorization: token }
                 })
             } else {
-                await axios.post('/api/products', { ...product, images, color, size }, {
+                await axios.post('/api/products', { ...product, images, color, size, isPublished: publish }, {
                     headers: { Authorization: token }
                 })
             }
@@ -233,18 +239,6 @@ function CreateProduct() {
     const removeColor = (item) => {
         setColors(colors.filter(color => color !== item))
     }
-
-
-    // useEffect(() => {
-    //     const handleOutsideClick = (e) => {
-    //         handleToggleClasslistRef(ref)
-    //     }
-    //     const element = document.getElementById('wrapper')
-    //     element.addEventListener('click',handleOutsideClick)
-    //     return () => {
-    //        element.removeEventListener('click',handleOutsideClick)
-    //     }
-    // }, [])
 
 
     return (
@@ -411,7 +405,21 @@ function CreateProduct() {
                         </button>
                         <span className='validate-msg-product-create'>{validateMsg.images}</span>
                         <FileList files={images} removeFile={removeFile} />
+
+                        <label htmlFor="">Ẩn/hiện</label>
+                        <div className='publish_product'>
+                            <div className="publish-toggle"
+                                onClick={() => setPublish(!publish)}>
+                                {
+                                    publish ?
+                                        <BsToggleOn style={{ color: '#0e9f6e' }} /> :
+                                        <BsToggleOff style={{ color: '#ff5a1f' }} />
+                                }
+                            </div>
+                        </div>
+
                     </div>
+
                 </div>
             </div>
         </div>

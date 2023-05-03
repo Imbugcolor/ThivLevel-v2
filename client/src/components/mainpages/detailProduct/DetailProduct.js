@@ -283,7 +283,7 @@ function DetailProduct() {
                                 </p>
                                 <div className="review-detail-product">
                                     <Rating value={detailProduct.rating} text={''} />
-                                    <span className='num-review-product'>/ {reviews.length} đánh giá</span>
+                                    <span className='num-review-product'>&#40; {reviews.length} đánh giá &#41;</span>
                                 </div>
                                 <p className="product-price">
                                     ${detailProduct.price}
