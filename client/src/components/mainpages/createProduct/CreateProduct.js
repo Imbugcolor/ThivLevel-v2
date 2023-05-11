@@ -24,6 +24,7 @@ function CreateProduct() {
     const [product, setProduct] = useState(initialState)
     const [categories] = state.categoriesAPI.categories
     const [images, setImages] = useState([])
+    const [isUpLoad, setIsUpLoad] = useState(false)
 
     const [isAdmin] = state.userAPI.isAdmin
     const [token] = state.token
@@ -95,9 +96,7 @@ function CreateProduct() {
         if(size.length === 0) {
             msg.size = '*Product size is required'
         }
-        if(!product.countInStock) {
-            msg.countInStock = '*Product price is required'
-        } else if(product.countInStock < 0) {
+        if(product.countInStock < 0) {
             msg.countInStock = '*Product in stock must greater than or equal to 0'
         } else if (!Number.isInteger(inStock.valueOf())) {
             msg.countInStock = '*Product in stock must be integer number'
@@ -131,6 +130,7 @@ function CreateProduct() {
                 return alert('File format is incorrect.')
 
 
+            setIsUpLoad(true)
             file.isUploading = true;
 
 
@@ -145,6 +145,7 @@ function CreateProduct() {
             })
 
             file.isUploading = false;
+            setIsUpLoad(false)
 
             setImages([...images, res.data]);
 
@@ -399,12 +400,14 @@ function CreateProduct() {
                         <button
                             className="upload-product-images-btn"
                             onClick={() => fileUpRef.current.click()}
+                            disabled={isUpLoad}
+                            style={{opacity: `${isUpLoad ? 0.6 : 1}`}}
                         >
                             <FontAwesomeIcon icon={faDownload} style={{ marginRight: 5 }} />
                             Tải ảnh lên
                         </button>
                         <span className='validate-msg-product-create'>{validateMsg.images}</span>
-                        <FileList files={images} removeFile={removeFile} />
+                        <FileList files={images} removeFile={removeFile} isUpLoad={isUpLoad}/>
 
                         <label htmlFor="">Ẩn/hiện</label>
                         <div className='publish_product'>

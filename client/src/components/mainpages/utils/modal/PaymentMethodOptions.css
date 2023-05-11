@@ -11,6 +11,7 @@
     position: relative;
     background: #fff;
     animation: zoomOut ease .3s;
+    margin: 0 15px;
 }
 
 .payment-method-options-modal-close {
@@ -56,7 +57,8 @@
     border-bottom: none;
 }
 
-.list__method_wrapper .method_item .content_options_method {
+.list__method_wrapper .method_item .content_options_method, 
+.credit-card-content {
     display: flex;
     align-items: center;
     color: #666666;
@@ -64,23 +66,37 @@
     margin-left: 15px;
 }
 
-.method_item .content_options_method .img_options_method {
-    height: 50px;
-    width: 105px;
+.method_item .content_options_method .img_options_method, 
+.credit-card-content .img_options_method {
+    max-width: 250px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.content_options_method .img_options_method img {
-    max-width: 105px;
+.content_options_method .img_options_method img,
+.credit-card-content .img_options_method img{
+    width: 100%;
 }
 
-.method_item .content_options_method .text_options_method {
+.method_item .content_options_method .text_options_method,
+.credit-card-content .text_options_method, 
+.credit-card-img {
     margin-left: 25px;
 }
 
 .check_options_method input {
     width: 18px;
     height: 18px;
+}
+
+.credit-card-method {
+    display: block;
+    line-height: 30px;
+}
+
+@media (max-width: 768px) {
+    .credit-card-content {
+        display: block;
+    }
 }

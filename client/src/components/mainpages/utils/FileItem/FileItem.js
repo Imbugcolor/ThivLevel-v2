@@ -4,7 +4,7 @@ import { faSpinner, faTrash } from '@fortawesome/free-solid-svg-icons'
 
 
 
-const FileItem = ({ file, deleteFile }) => {
+const FileItem = ({ file, deleteFile, isUpLoad }) => {
     return (
         <>
             <img src={file.url} alt="" style={{ width: '100px', height: '100px', objectFit: 'cover' }} />
@@ -21,7 +21,12 @@ const FileItem = ({ file, deleteFile }) => {
                 {!file.isUploading &&
                     <div className="delete-image">
                         <FontAwesomeIcon icon={faTrash}
-                            onClick={() => deleteFile(file.public_id)} />
+                            onClick={() => {
+                                !isUpLoad && deleteFile(file.public_id)
+                                }
+                            } 
+                            style={{opacity: `${isUpLoad ? 0.6 : 1}`}}
+                            />
                     </div>
                 }
             </div>

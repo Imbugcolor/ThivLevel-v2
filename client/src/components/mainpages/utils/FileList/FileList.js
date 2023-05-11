@@ -3,7 +3,7 @@ import axios from 'axios'
 import { GlobalState } from '../../../../GlobalState'
 import FileItem from './../FileItem/FileItem'
 
-const FileList = ({ files, removeFile }) => {
+const FileList = ({ files, removeFile, isUpLoad }) => {
     const state = useContext(GlobalState)
     const [token] = state.token
     const deleteFileHandler = async(_id) => {
@@ -28,6 +28,7 @@ const FileList = ({ files, removeFile }) => {
                             key={f.public_id}
                             file={f}
                             deleteFile={deleteFileHandler} 
+                            isUpLoad={isUpLoad}
                         />
                     </li>
                 ))

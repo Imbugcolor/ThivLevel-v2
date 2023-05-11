@@ -115,15 +115,15 @@ function PaymentMethodOptions({ cart, codSuccess, address, detail}) {
                         />
                     </div>
                     <div className='content_options_method'>
-                        <div className='img_options_method'>
-                            <img src={CodIcon}/>
-                        </div>  
                         <div className='text_options_method'>
                             <span>Thanh toán khi giao hàng (COD)</span>
                         </div>
+                        <div className='img_options_method'>
+                            <img src={CodIcon}/>
+                        </div>  
                     </div>
                 </div>
-                <div className='method_item stripe_method_option'>
+                <div className='method_item stripe_method_option credit-card-method'>
                     <div className='check_options_method'>
                         <input type='radio' name='options'
                         value='stripe'
@@ -131,12 +131,12 @@ function PaymentMethodOptions({ cart, codSuccess, address, detail}) {
                         checked={method === 'stripe'}
                         />
                     </div>
-                    <div className='content_options_method'>
-                        <div className='img_options_method'>
-                            <img src={StripeIcon}/>
-                        </div>
+                    <div className='credit-card-content'>
                         <div className='text_options_method'>
-                            <span>Thanh toán với Stripe</span>
+                            <span>Thanh toán qua thẻ tín dụng</span>
+                        </div>
+                        <div className='img_options_method credit-card-img'>
+                            <img src={StripeIcon}/>
                         </div>
                     </div>
                 </div>
