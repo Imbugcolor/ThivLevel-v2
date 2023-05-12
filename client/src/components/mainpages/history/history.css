@@ -400,6 +400,44 @@ td.method-payment {
     justify-content: center !important;
 }
 
+.review_feedback .item__feedback {
+    display: flex;
+}
+
+.review_feedback .item__feedback .item__img{
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+}
+
+.review_feedback .item__feedback .item__detail {
+    margin-left: 15px;
+}
+
+.item__color {
+    width: 15px;
+    height: 15px;
+    border: 1px solid rgb(204, 204, 204);
+    display: inline-block;
+}
+
+.item__feedback .item__detail .review-btn {
+    display: block;
+    background: #0066b1;
+    color: #fff;
+    padding: 8px 15px;
+    margin-top: 8px;
+}
+
+.item__feedback .item__detail .reviewed-btn {
+    display: block;
+    background: #d5d3d2;
+    color: #6e6e6e;
+    padding: 8px 15px;
+    margin-top: 8px;
+    cursor: auto;
+}
+
 @media (max-width: 768px) {
     .order-detail .pay-infor {
         margin-top: 15px;
@@ -411,3 +449,6 @@ td.method-payment {
         display: block;
     }
 }
+
+/* Review Feedback Modal */
+@import url('../utils/modal/reviewModal.css');

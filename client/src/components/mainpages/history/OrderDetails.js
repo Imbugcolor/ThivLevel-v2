@@ -17,17 +17,23 @@ import Unionpay from '../../../images/unionpay.png'
 import LoadingGIF from '../../../images/loading.gif'
 import { IoTrashBin } from 'react-icons/io5'
 import Swal from 'sweetalert2'
+import ReviewModal from '../utils/modal/ReviewModal'
 
 function OrderDetails() {
     const state = useContext(GlobalState)
     const [history] = state.userAPI.history
     const [token] = state.token
+    const [products] = state.productsAPI.allProducts
+    const [user] = state.userAPI.user
     const [orderDetails, setOrderDetails] = useState([])
     const [loading, setLoading] = useState(false)
     const [callback, setCallback] = useState(false)
     const [cardType, setCardType] = useState('')
-
+    const [item, setItem] = useState(false)
+    const [openReviewModal, setOpenReviewModal] = useState(false)
+    const [reviewed, setReviewed] = useState([])
     const params = useParams()
+
     useEffect(() => {
         if (params.id) {
             if (token) {
@@ -53,6 +59,20 @@ function OrderDetails() {
                                 }
                                 getCardType() 
                             }
+                            if(item.status === 'Delivered') {
+                                let reviewedArray = []
+                                item.cart.map(it => {
+                               
+                                    const alreadyReviewed = products.find(p => p.product_id === it.product_id)?.reviews?.find(
+                                        (r) => r.user?._id?.toString() === user?._id?.toString()
+                                    )
+
+                                    if(alreadyReviewed){
+                                        reviewedArray.push(it.product_id)                         
+                                    }
+                                })
+                                setReviewed(reviewedArray)
+                            }
                         }                 
                     })
                     setLoading(false)              
@@ -60,7 +80,7 @@ function OrderDetails() {
                 getHistory()
             }
         }
-    }, [params.id, history, callback])
+    }, [params.id, history, callback, products])
 
 
     const swalConfirmButtons = Swal.mixin({
@@ -111,6 +131,11 @@ function OrderDetails() {
                 )
             }
           })
+    }
+
+    const handleReviewClick = (item) => {
+        setItem(item)
+        setOpenReviewModal(true)
     }
 
     if (orderDetails.length === 0) return null;
@@ -287,9 +312,46 @@ function OrderDetails() {
                         } 
                         </div>
                     </div>
+                    {
+                    orderDetails.status === 'Delivered' && 
+                    <div className='review_feedback status__order_infor box-style_infor col l-3 m-6 c-12'>
+                        <span className='heading__box'>Đánh giá sản phẩm</span>
+                        {
+                            orderDetails.cart?.map((item, index) => (
+                                <div className='item__feedback box-detail_infor' key={index}>
+                                    <img src={item.images[0].url} className='item__img'/>
+                                    <div className='item__detail'>
+                                        <p>{item.title}</p>
+                                        <div style={{ backgroundColor: `${item.color}`}} className='item__color '></div>
+                                        <span>/</span>
+                                        <span>{item.size}</span>
+                                        {
+                                            reviewed.includes(item.product_id) ? 
+                                            <button 
+                                                className='reviewed-btn'>
+                                                    Đã đánh giá
+                                            </button> 
+                                            : <button 
+                                                onClick={() => handleReviewClick(item)} 
+                                                className='review-btn'>Đánh giá
+                                             </button>
+                                        }
+                                    </div>        
+                                </div>
+                            )) 
+                        }                  
+                    </div>
+                    }
                 </div>
+                
             </div>
-
+            {
+                (item && openReviewModal) &&
+                <ReviewModal 
+                    item={item} 
+                    setOpenReviewModal={setOpenReviewModal}
+                />
+            }
         </div>
     )
 }

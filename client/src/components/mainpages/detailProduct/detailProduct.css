@@ -421,11 +421,14 @@
 
 .tag-name {
     color: #555;
-    font-size: 20px;
+    font-size: 18px;
+    text-transform: uppercase;
 }
 
 .tag-color {
     color: #555;
+    font-size: 18px;
+    text-transform: uppercase;
 }
 
 .review-section, .related-products {

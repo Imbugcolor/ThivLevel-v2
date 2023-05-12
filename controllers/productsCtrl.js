@@ -179,6 +179,56 @@ const productsCtrl = {
             return res.status(500).json({msg: err.message})
         }
     },
+    createReviewOnFeedback: async (req, res) => {
+        try {
+            const {rating, comment} = req.body;
+            const product = await Products.findOne({product_id: req.params.id});
+
+            if(!product) {
+                return res.status(400).json({msg: 'Sản phẩm không tồn tại.'})
+            }
+
+            const { product_id } = product
+  
+            const history = await Payments.find({$and: [{user_id: req.user.id},{status: 'Delivered'}]})
+
+            const cartsArray = history.map(item => {return item.cart})
+            var productsArray = cartsArray.flat()
+            const proIdArray = productsArray.map(item => { return item.product_id; })
+    
+            
+            const boughtProduct = proIdArray.includes(product_id)
+            
+            if(!boughtProduct) {
+                return res.status(400).json({msg: 'Hãy mua sản phẩm để đánh giá cho chúng tôi nhé!'})
+            }
+
+            const alreadyReviewed = product.reviews.find(
+                (r) => r.user.toString() === req.user.id.toString()
+            )
+
+            if(alreadyReviewed){
+                return res.status(400).json({msg: 'Bạn đã đánh giá sản phẩm này rồi.'})
+            }
+
+            const review = {
+                rating: Number(rating),
+                comment,
+                user: req.user.id
+            }
+
+            product.reviews.push(review)
+            product.numReviews = product.reviews.length
+            product.rating = 
+            product.reviews.reduce((acc, item) => item.rating + acc, 0) / product.reviews.length
+
+            await product.save()
+            res.status(201).json({msg: 'Cảm ơn bạn đã đánh giá cho chúng tôi.'})
+           
+        } catch (err) {
+            return res.status(500).json({msg: err.message})
+        }
+    },
     changePublish : async (req, res) => {
         try {
             const { isPublished } = req.body

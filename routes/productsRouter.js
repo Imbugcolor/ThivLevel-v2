@@ -19,4 +19,7 @@ router.route('/products/:id/review')
 router.route('/productsHomepage')
     .get(productsCtrl.getProductsQuery)
 
+router.route('/products/:id/feedback')
+    .post(auth, productsCtrl.createReviewOnFeedback)
+
 module.exports = router

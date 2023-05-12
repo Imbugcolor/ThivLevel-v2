@@ -1,0 +1,93 @@
+.review__feedback_modal{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.review__feedback_modal .review__container {
+    background-color: white;
+    padding: 20px;
+    position: relative;
+}
+
+.review__feedback_modal .modal-close-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.review__container .review__item {
+    text-align: center;
+}
+
+.review__container .review__item img {
+    width: 100px;
+}
+
+.review__container .review__item p {
+    text-transform: capitalize;
+}
+
+.form .form-review {
+    display: flex;
+    margin-top: 10px;
+}
+
+.form-review .review__avt-user {
+    padding-right: 5px;
+}
+
+.form-review .review__avt-user img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.form .form-review textarea {
+    width: 700px;
+    height: 120px;
+    padding: 10px;
+    font-size: 14px;
+    border: none;
+    outline: none;
+    background: rgba(0,0,0,.03);
+}
+
+@media (max-width: 1023px) {
+    .review__container .review__form .form-review textarea {
+        width: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    .review__container .review__form .form-review textarea {
+        width: 340px;
+    }
+}
+
+@media (max-width: 470px) {
+    .review__container .review__form .form-review textarea {
+        width: 280px;
+    }
+}
+
+@media (max-width: 410px) {
+    .review__container .review__form .form-review textarea {
+        width: 240px;
+    }
+}
+
+@media (max-width: 370px) {
+    .review__container .review__form .form-review textarea {
+        width: 210px;
+    }
+}

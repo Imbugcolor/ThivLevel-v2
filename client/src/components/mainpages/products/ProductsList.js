@@ -24,7 +24,7 @@ function ProductsList() {
 
     const uploadRef = useRef()
 
-    const deleteProduct = async (id, public_id) => {
+    const deleteProduct = async (id) => {
         if (window.confirm('Are you sure to delete this product?')) {
             try {
 
@@ -35,21 +35,25 @@ function ProductsList() {
                     loading: true
                 })
 
-                const destroyImg = axios.post('/api/destroy', { public_id }, {
-                    headers: { Authorization: token }
-                })
+                // const destroyImg = axios.post('/api/destroy', { public_id }, {
+                //     headers: { Authorization: token }
+                // })
+
                 const deleteProduct = axios.delete(`/api/products/${id}`, {
                     headers: { Authorization: token }
                 })
 
-                await destroyImg
+                // await destroyImg
+
                 await deleteProduct
                 setCallback(!callback)
+
                 setLoading({
                     ...loading,
                     id,
                     loading: false
                 })
+                
                 toast.success(`Deleted successfully!`, {
                     position: "top-center",
                     autoClose: 3000
@@ -201,7 +205,7 @@ function ProductsList() {
                                                     </Link>
                                                 </div>
                                                 <div className="delete-product">
-                                                    <Link to="#!" onClick={() => deleteProduct(product._id, product.images[0].public_id)}>
+                                                    <Link to="#!" onClick={() => deleteProduct(product._id)}>
                                                         {product._id === loading.id && loading.loading === true ?
                                                             <FontAwesomeIcon icon={faSpinner} className="fa-spin" style={{ color: '#9e9e9e' }} /> :
                                                             <MdIcons.MdDelete style={{ color: '#9e9e9e' }} />
