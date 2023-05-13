@@ -36,7 +36,12 @@ const Breadcrumbs = props => {
           
           const isLast = index === pathnames.length - 1;
           return isLast ? (
-            <Typography key={name}>{name}</Typography>
+            <Typography key={name}>
+              {
+                name.length > 45 ?
+                `...${name.slice(-5)}` : `${name}`
+              }
+            </Typography>
           ) : (
             <Link key={name} onClick={() => history.push(routeTo)}>
               {name}
