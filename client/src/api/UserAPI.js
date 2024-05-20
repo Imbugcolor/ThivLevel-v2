@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import { io } from 'socket.io-client'
+import { BASE_URL } from '../components/mainpages/utils/config'
 
 function UserAPI(token) {
     const [isLogged, setIsLogged] = useState(false)
@@ -15,6 +17,7 @@ function UserAPI(token) {
     const [loading, setLoading] = useState(false)
     const [cart, setCart] = useState()
     const [total, setTotal] = useState(0)
+    const [socket, setSocket] = useState(null)
 
     useEffect(() => {
         if (token) {
@@ -84,7 +87,11 @@ function UserAPI(token) {
                 }
             }
             getUser()
-            
+
+            // create new socket 
+            const connectSocket = io(BASE_URL)
+            setSocket(connectSocket)
+            return () => connectSocket.close()
         }
         
     }, [token, callback])
@@ -141,6 +148,7 @@ function UserAPI(token) {
         callback: [callback, setCallback],
         history: [history, setHistory],
         user: [user, setUser],
+        socket: [socket, setSocket],
         cart: [cart, setCart],
         total: [total, setTotal],
         addCart: addCart, 

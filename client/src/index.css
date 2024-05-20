@@ -92,6 +92,9 @@ table {
 /* Cart */
 @import url("./components/mainpages/cart/cart.css");
 
+/* Paypal */
+@import url("./components/mainpages/cart/paypal.css");
+
 /* History */
 @import url("./components/mainpages/history/history.css");
 

@@ -244,6 +244,8 @@ function DetailOrderAdmin() {
                                 {
                                     detailOrder.method === 'Online' && detailOrder.isPaid === true ? 
                                     `Đã thanh toán: ${new Date(detailOrder.createdAt).toLocaleDateString() + ' ' + moment(detailOrder.createdAt).format('LT')}` :
+                                    detailOrder.method === 'PAYPAL_CREDIT_CARD' && detailOrder.isPaid === true ? 
+                                    `Đã thanh toán: ${new Date(detailOrder.createdAt).toLocaleDateString() + ' ' + moment(detailOrder.updatedAt).format('LT')}` :
                                     detailOrder.method === 'COD' && detailOrder.isPaid === true ? 
                                     `Đã thanh toán: ${new Date(detailOrder.updatedAt).toLocaleDateString() + ' ' + moment(detailOrder.updatedAt).format('LT')}` :
                                     'Chưa thanh toán'

@@ -265,6 +265,8 @@ function OrderDetails() {
                                 {
                                     orderDetails.method === 'Online' && orderDetails.isPaid === true ? 
                                     `Đã thanh toán: ${new Date(orderDetails.createdAt).toLocaleDateString() + ' ' + moment(orderDetails.createdAt).format('LT')}` :
+                                    orderDetails.method === 'PAYPAL_CREDIT_CARD' && orderDetails.isPaid === true ? 
+                                    `Đã thanh toán: ${new Date(orderDetails.createdAt).toLocaleDateString() + ' ' + moment(orderDetails.createdAt).format('LT')}` :
                                     orderDetails.method === 'COD' && orderDetails.isPaid === true ? 
                                     `Đã thanh toán: ${new Date(orderDetails.updatedAt).toLocaleDateString() + ' ' + moment(orderDetails.updatedAt).format('LT')}` :
                                     'Chưa thanh toán'

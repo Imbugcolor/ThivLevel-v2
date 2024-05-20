@@ -5,12 +5,11 @@ import { faCartShopping, faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { GlobalState } from '../../../GlobalState'
 import axios from 'axios'
 import Payment from './Payment'
-import { toast } from 'react-toastify';
 import * as RiIcons from 'react-icons/ri'
 import Swal from 'sweetalert2'
 import { GrFormSubtract } from 'react-icons/gr'
 import { FiPlus } from 'react-icons/fi'
-import Loading from '../utils/loading/Loading'
+import EmptyCart from '../../../images/empty-cart.jpg'
 
 function Cart() {
   const state = useContext(GlobalState)
@@ -44,8 +43,9 @@ function Cart() {
     if(queryParameters.get('canceled') === 'true'){
       Swal.fire({
         width: 500,
-        icon: 'warning',
+        icon: 'error',
         title: `<span class='title-msg-dialog'>Đặt hàng thất bại.</span>`,
+        text: queryParameters.get('error') ? queryParameters.get('error') : '',
         showConfirmButton: true,
         timer: 3000
       })
@@ -294,7 +294,7 @@ function Cart() {
     return (
       <div style={{ width: "100%", textAlign: 'center' }} >
         <img draggable={false} style={style}
-          src="https://rtworkspace.com/wp-content/plugins/rtworkspace-ecommerce-wp-plugin/assets/img/empty-cart.png" alt="" />
+          src={EmptyCart} alt="" />
       </div>
     )
   }

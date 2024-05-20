@@ -5,9 +5,11 @@ import { FaRegTimesCircle } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import CodIcon from '../../../../images/cod_icon.PNG'
 import StripeIcon from '../../../../images/stripe.png'
+import PaypalIcon from '../../../../images/paypal-credit-card-1.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import Swal from 'sweetalert2'
+import Paypal from '../../cart/Paypal'
 
 function PaymentMethodOptions({ cart, codSuccess, address, detail}) {
     const state = useContext(GlobalState)
@@ -79,6 +81,9 @@ function PaymentMethodOptions({ cart, codSuccess, address, detail}) {
             if (method === 'stripe') {
                 return checkoutStripeHandle()
             } 
+            if (method === 'paypal') {
+                return;
+            }
             setLoading(false)
         } catch (err) {
             setLoading(false)
@@ -133,20 +138,45 @@ function PaymentMethodOptions({ cart, codSuccess, address, detail}) {
                     </div>
                     <div className='credit-card-content'>
                         <div className='text_options_method'>
-                            <span>Thanh toán qua thẻ tín dụng</span>
+                            <span>Thanh toán qua thẻ tín dụng {'('}Stripe{')'}</span>
                         </div>
                         <div className='img_options_method credit-card-img'>
                             <img src={StripeIcon}/>
                         </div>
                     </div>
                 </div>
+                <div className='method_item stripe_method_option credit-card-method'>
+                    <div className='check_options_method'>
+                        <input type='radio' name='options'
+                        value='paypal'
+                        onChange={handleChangeMethod}
+                        checked={method === 'paypal'}
+                        />
+                    </div>
+                    <div className='credit-card-content'>
+                        <div className='text_options_method'>
+                            <span>Thanh toán qua thẻ tín dụng {'('}Paypal{')'} </span>
+                        </div>
+                        <div className='img_options_method credit-card-img'>
+                            <img src={PaypalIcon}/>
+                        </div>
+                    </div>
+                </div>
+                <div className='paypal_section'>
+                    {
+                        method === 'paypal' &&
+                        <Paypal name={detail.name} phone={detail.phone} address={address}/>
+                    }
+                </div>
             </div>
-            
-            <button className='completed-check-option' onClick={handleComplete}>
-                {
-                    loading ? <FontAwesomeIcon icon={faSpinner} className="fa-spin" style={{ color: '#ffffff', fontSize: '18px' }} /> : 'Hoàn tất đơn hàng'
-                }
-            </button>
+            {
+                method === 'stripe' || method === 'cod' ?
+                <button className='completed-check-option' onClick={handleComplete}>
+                    {
+                        loading ? <FontAwesomeIcon icon={faSpinner} className="fa-spin" style={{ color: '#ffffff', fontSize: '18px' }} /> : 'Hoàn tất đơn hàng'
+                    }
+                </button> : null
+            }
             <div className="payment-method-options-modal-close" onClick={handleCloseView}>
                     <FaRegTimesCircle style={{ color: '#d93938' }} />
             </div>

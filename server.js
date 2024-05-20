@@ -5,6 +5,7 @@ const cors = require('cors')
 const fileUpload = require('express-fileupload')
 const cookieParser = require('cookie-parser')
 const path = require('path')
+const SocketServer = require('./socket.server')
 
 const app = express()
 
@@ -15,6 +16,20 @@ app.use(fileUpload({
     useTempFiles: true
 }))
 
+//Socket
+const http = require('http').createServer(app)
+const io = require('socket.io')(http, {
+    cors: {
+        origin: "*"
+    }
+})
+
+global._io = io;
+
+io.on('connection', socket => {
+    SocketServer(socket)
+})
+
 //Routes
 app.use('/user', require('./routes/userRouter'))
 app.use('/api', require('./routes/categoryRouter'))
@@ -22,6 +37,7 @@ app.use('/api', require('./routes/upload'))
 app.use('/api', require('./routes/productsRouter'))
 app.use('/api', require('./routes/paymentRouter'))
 app.use('/api', require('./routes/stripeRouter'))
+app.use('/api', require('./routes/paypalRouter'))
 
 
 //Connect to mongoDB
@@ -48,6 +64,6 @@ app.get('/', (req, res) => {
 })
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
+http.listen(PORT, () => {
     console.log('Server is running on port', PORT)
 })
