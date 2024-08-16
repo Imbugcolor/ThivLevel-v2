@@ -50,6 +50,7 @@ function DetailProduct() {
 
     const [loading, setLoading] = state.productsAPI.loading
 
+
     const count_element_in_array = (array, x) => {
         let count = 0;
         for(let i=0;i<array.length;i++){
@@ -219,6 +220,29 @@ function DetailProduct() {
         setCurrentProduct(product)
     }
 
+    const handleZoomImage = (e, index) => {
+        const imageDisplay = document.getElementsByClassName('mySlides')[index]
+        if (imageDisplay) {
+            // Example: Change --zoom-display based on some condition or interaction
+            imageDisplay.style.setProperty('--zoom-display', 'block');
+
+            let pointer = {
+                x: (e.nativeEvent.offsetX * 100) / imageDisplay.offsetWidth,
+                y: (e.nativeEvent.offsetY * 100) / imageDisplay.offsetHeight
+            }
+
+            imageDisplay.style.setProperty('--zoom-x', pointer.x + "%")
+            imageDisplay.style.setProperty('--zoom-y', pointer.y + "%")
+        }
+    }
+
+    const handleMouseLeave = (index) => {
+        const imageDisplay = document.getElementsByClassName('mySlides')[index]
+        if (imageDisplay) {
+            imageDisplay.style.setProperty('--zoom-display', 'none');
+        }
+    };
+
     useEffect(() => {
         if (!slideRef.current || !width) return;
         let numOfThumb = Math.round(slideRef.current.offsetWidth / width)
@@ -243,7 +267,15 @@ function DetailProduct() {
                                 {
                                     detailProduct.images.map((image, index) => (
                                         <div key={image.public_id} className="mySlides"
-                                            style={{ display: (index + 1) === slideIndex ? "block" : "none" }}>
+                                            style={{ 
+                                                    display: (index + 1) === slideIndex ? "block" : "none",
+                                                    "--url": `url(${image.url})`,
+                                                    "--zoom-x": "0%", "--zoom-y": "0%",
+                                                    "--zoom-display": "none"      
+                                                 }}
+                                            onMouseMove={(e) => handleZoomImage(e, index)}
+                                            onMouseLeave={() => handleMouseLeave(index)}
+                                        >
                                             <div className="numbertext">{index + 1} / {detailProduct.images.length}</div>
                                             <img src={image.url} alt="" />
                                         </div>
